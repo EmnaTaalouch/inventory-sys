@@ -1,4 +1,5 @@
-import { CartModel } from 'src/modules/cart/models/cart.model';
+//import { CartModel } from 'src/modules/cart/models/cart.model';
+import { InvoiceModel } from 'src/modules/invoice/models/invoice.model';
 import { OrderModel } from 'src/modules/order/models/order.model';
 import {
   Entity,
@@ -6,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   ManyToMany,
   OneToMany,
+  ManyToOne,
 } from 'typeorm';
 
 @Entity()
@@ -34,6 +36,9 @@ export class ProductModel {
   @ManyToMany(() => OrderModel, (order) => order.products)
   orders: OrderModel[];
 
-  @OneToMany(() => CartModel, (cartItem) => cartItem.product)
-  cartItems: CartModel[];
+  //@OneToMany(() => CartModel, (cartItem) => cartItem.product)
+  //cartItems: CartModel[];
+
+  @ManyToOne(() => InvoiceModel, (invoice) => invoice.products)
+  invoice: InvoiceModel;
 }

@@ -1,4 +1,4 @@
-import { CartModel } from 'src/modules/cart/models/cart.model';
+//import { CartModel } from 'src/modules/cart/models/cart.model';
 import { OrderModel } from 'src/modules/order/models/order.model';
 import {
   Entity,
@@ -9,6 +9,7 @@ import {
   BeforeInsert,
 } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
+import { InvoiceModel } from 'src/modules/invoice/models/invoice.model';
 @Entity()
 export class UserModel {
   @PrimaryGeneratedColumn()
@@ -54,6 +55,9 @@ export class UserModel {
   @OneToMany(() => OrderModel, (order) => order.user)
   orders: OrderModel[];
 
-  @OneToMany(() => CartModel, (cartItem) => cartItem.user)
-  cartItems: CartModel[];
+  //@OneToMany(() => CartModel, (cartItem) => cartItem.user)
+  //cartItems: CartModel[];
+
+  @OneToMany(() => InvoiceModel, (invoice) => invoice.user)
+  invoices: InvoiceModel[];
 }

@@ -4,17 +4,19 @@ import { AppService } from './app.service';
 import { ProductModule } from './modules/product/product.module';
 import { UserModule } from './modules/user/user.module';
 import { OrderModule } from './modules/order/order.module';
-import { CartModule } from './modules/cart/cart.module';
 
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModel } from './modules/user/models/user.model';
 import { ProductModel } from './modules/product/models/product.model';
 import { OrderModel } from './modules/order/models/order.model';
-import { CartModel } from './modules/cart/models/cart.model';
+
 import { AuthModule } from './common/auth/auth.module';
+import { InvoiceModel } from './modules/invoice/models/invoice.model';
+import { InvoiceModule } from './modules/invoice/invoice.module';
 //import { join } from 'path';
-const entities = [UserModel, ProductModel, OrderModel, CartModel];
+
+const entities = [UserModel, ProductModel, OrderModel, InvoiceModel];
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -39,7 +41,8 @@ const entities = [UserModel, ProductModel, OrderModel, CartModel];
     UserModule,
     ProductModule,
     OrderModule,
-    CartModule,
+
+    InvoiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
