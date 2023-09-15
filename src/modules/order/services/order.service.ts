@@ -13,7 +13,10 @@ export class OrderService {
   ) {}
 
   async getAllOrders() {
-    return this.orderRepository.find();
+    return this.orderRepository
+      .createQueryBuilder('order')
+      .leftJoinAndSelect('order.user', 'user')
+      .getMany();
   }
 
   async getOrderById(orderId: number) {

@@ -52,12 +52,11 @@ export class UserModel {
   @Column({ nullable: true })
   payment_method: string;
 
-  @OneToMany(() => OrderModel, (order) => order.user)
+  @OneToMany(() => OrderModel, (order) => order.user, { cascade: true })
   orders: OrderModel[];
-
   //@OneToMany(() => CartModel, (cartItem) => cartItem.user)
   //cartItems: CartModel[];
 
-  @OneToMany(() => InvoiceModel, (invoice) => invoice.user)
+  @OneToMany(() => InvoiceModel, (invoice) => invoice.user, { cascade: true })
   invoices: InvoiceModel[];
 }

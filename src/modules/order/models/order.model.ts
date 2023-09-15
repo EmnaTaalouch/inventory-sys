@@ -31,10 +31,12 @@ export class OrderModel {
   @Column({ type: 'timestamp', nullable: true })
   date_payment: Date;
 
-  @ManyToOne(() => UserModel, (user) => user.orders)
+  @ManyToOne(() => UserModel, (user) => user.orders, { onDelete: 'CASCADE' }) // Specify onDelete: 'CASCADE'
   user: UserModel;
 
-  @ManyToMany(() => ProductModel, (product) => product.orders)
+  @ManyToMany(() => ProductModel, (product) => product.orders, {
+    onDelete: 'CASCADE',
+  }) // Specify onDelete: 'CASCADE'
   @JoinTable()
-  products: ProductModel[]; // This array stores the associated products directly
+  products: ProductModel[];
 }

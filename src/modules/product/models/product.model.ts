@@ -33,12 +33,13 @@ export class ProductModel {
   @Column({ nullable: true })
   image: string;
 
-  @ManyToMany(() => OrderModel, (order) => order.products)
+  @ManyToMany(() => OrderModel, (order) => order.products, {
+    onDelete: 'CASCADE',
+  }) // Specify onDelete: 'CASCADE'
   orders: OrderModel[];
 
-  //@OneToMany(() => CartModel, (cartItem) => cartItem.product)
-  //cartItems: CartModel[];
-
-  @ManyToOne(() => InvoiceModel, (invoice) => invoice.products)
+  @ManyToOne(() => InvoiceModel, (invoice) => invoice.products, {
+    onDelete: 'CASCADE',
+  }) // Specify onDelete: 'CASCADE'
   invoice: InvoiceModel;
 }

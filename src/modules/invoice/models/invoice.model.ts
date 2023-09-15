@@ -28,9 +28,11 @@ export class InvoiceModel {
 
   @Column({ type: 'decimal', precision: 10, scale: 2 })
   totalAmount: number;
-  @ManyToOne(() => UserModel, (user) => user.invoices)
-  user: UserModel; //the user who the invoice is billed to
+  @ManyToOne(() => UserModel, (user) => user.invoices, { onDelete: 'CASCADE' }) // Specify onDelete: 'CASCADE'
+  user: UserModel;
 
-  @OneToMany(() => ProductModel, (product) => product.invoice)
-  products: ProductModel[]; // Products associated with the invoice
+  @OneToMany(() => ProductModel, (product) => product.invoice, {
+    onDelete: 'CASCADE',
+  }) // Specify onDelete: 'CASCADE'
+  products: ProductModel[];
 }
