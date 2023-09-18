@@ -23,6 +23,11 @@ export class AuthService {
     };
   }
 
+  async getProfile(userId) {
+    const user = await this.usersService.getUserById(userId);
+    return user;
+  }
+
   async validateUser(AuthLoginDto: AuthLoginDto) {
     const { email, password } = AuthLoginDto;
 
