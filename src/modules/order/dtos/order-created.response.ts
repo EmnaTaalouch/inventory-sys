@@ -21,7 +21,7 @@ export class OrderCreatedResponse {
   date_payment: Date;
 
   @IsNotEmpty()
-  userId: number;
+  user: any;
 
   @IsNotEmpty()
   productIds: number[];

@@ -4,12 +4,14 @@ import { Repository } from 'typeorm';
 import { InvoiceModel } from '../models/invoice.model';
 import { UpdateInvoiceDto } from '../dtos/update-invoice.Dto';
 import { CreateInvoiceDto } from '../dtos/create-invoice.Dto';
+import { PdfService } from './pdf.service';
 
 @Injectable()
 export class InvoiceService {
   constructor(
     @InjectRepository(InvoiceModel)
     private readonly invoiceRepository: Repository<InvoiceModel>,
+    private readonly pdfService: PdfService,
   ) {}
 
   async getAllInvoices() {
@@ -28,7 +30,9 @@ export class InvoiceService {
 
   async createInvoice(createInvoiceDto: CreateInvoiceDto) {
     const newinvoice = this.invoiceRepository.create(createInvoiceDto);
-    return await this.invoiceRepository.save(newinvoice);
+    await this.invoiceRepository.save(newinvoice);
+    const pdfPath = await this.pdfService.generateInvoicePdf(newinvoice);
+    return pdfPath;
   }
 
   async updateInvoice(invoiceId: number, UpdateInvoiceDto: UpdateInvoiceDto) {

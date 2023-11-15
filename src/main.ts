@@ -6,11 +6,11 @@ async function bootstrap() {
 
   // Enable CORS with specific options
   app.enableCors({
-    origin: 'http://localhost:3001',
+    origin: 'http://localhost:3000',
     credentials: true, // If you need to include cookies or custom headers
   });
 
-  await app.listen(3000);
+  await app.listen(5000);
 }
 
 bootstrap();

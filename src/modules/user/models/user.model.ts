@@ -27,6 +27,9 @@ export class UserModel {
   @Column()
   password: string;
 
+  @Column({ default: 'client' })
+  role: string;
+
   @Column()
   @UpdateDateColumn()
   createdAt: Date;

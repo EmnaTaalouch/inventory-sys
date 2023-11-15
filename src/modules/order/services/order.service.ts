@@ -16,6 +16,7 @@ export class OrderService {
     return this.orderRepository
       .createQueryBuilder('order')
       .leftJoinAndSelect('order.user', 'user')
+      .leftJoinAndSelect('order.products', 'products')
       .getMany();
   }
 
@@ -31,6 +32,8 @@ export class OrderService {
   }
 
   async createOrder(createOrderDto: CreateOrderRequest) {
+    console.log(createOrderDto);
+
     const newOrder = this.orderRepository.create(createOrderDto);
     return this.orderRepository.save(newOrder);
   }

@@ -19,13 +19,17 @@ export class OrderModel {
   @Column({ nullable: true })
   total: number;
 
-  @Column({ type: 'timestamp', nullable: true })
+  @Column({
+    type: 'timestamp',
+    nullable: true,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
   date_order: Date;
 
-  @Column()
+  @Column({ default: 'Pending' })
   status: string;
 
-  @Column()
+  @Column({ default: 'Pending' })
   payment_status: string;
 
   @Column({ type: 'timestamp', nullable: true })

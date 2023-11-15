@@ -37,6 +37,11 @@ export class ProductService {
     this.productRepository.merge(product, updateProductDto);
     return this.productRepository.save(product);
   }
+  async updateProductImage(id: number, newImage: string) {
+    const product = await this.getProductById(id);
+    product.image = newImage;
+    return this.productRepository.save(product);
+  }
 
   async deleteProduct(id: number) {
     const product = await this.getProductById(id);
